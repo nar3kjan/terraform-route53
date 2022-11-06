@@ -14,6 +14,17 @@ terraform {
   }
 }
 
+data "terraform_remote_state" "servers" {
+  backend = "remote"
+  config = {
+    organization = "nar3kjan"
+    workspaces = {
+      name = "Servers"
+    }
+  }
+}
+
+
 #-----------------------------------------------------------------------------------------------
 resource "aws_acm_certificate" "cert" {
   domain_name       = "nar3kjan.link"
@@ -46,7 +57,8 @@ resource "aws_acm_certificate_validation" "validation" {
   certificate_arn         = aws_acm_certificate.cert.arn
   validation_record_fqdns = [for record in aws_route53_record.my_record : record.fqdn]
 }
-/*
+
+
 resource "aws_route53_record" "www_elb" {
   zone_id = "Z0991836LX0MF99OJVYJ"
   name    = "nar3kjan.link"
@@ -58,5 +70,5 @@ resource "aws_route53_record" "www_elb" {
     evaluate_target_health = true
   }
 }
-*/
+
 
