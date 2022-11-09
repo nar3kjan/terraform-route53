@@ -75,4 +75,15 @@ resource "aws_route53_record" "www_elb" {
   }
 }
 
+resource "aws_route53_record" "elb" {
+  zone_id = data.aws_route53_zone.my_zone.id
+  name    = "nar3kjan.link"
+  type    = "A"
+
+  alias {
+    name                   = data.terraform_remote_state.servers.outputs.elb_dns_name
+    zone_id                = data.terraform_remote_state.servers.outputs.elb_zone_id
+    evaluate_target_health = true
+  }
+}
 
