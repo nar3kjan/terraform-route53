@@ -31,6 +31,7 @@ data "aws_route53_zone" "my_zone" {
 #-----------------------------------------------------------------------------------------------
 resource "aws_acm_certificate" "cert" {
   domain_name       = "nar3kjan.link"
+  subject_alternative_names = ["www.nar3kjan.link"]
   validation_method = "DNS"
 }
 
@@ -60,11 +61,11 @@ resource "aws_acm_certificate_validation" "validation_www" {
   validation_record_fqdns = [for record in aws_route53_record.my_record : record.fqdn]
 }
 
-
+/*
 
 resource "aws_route53_record" "www_elb" {
   zone_id = data.aws_route53_zone.my_zone.id
-  name    = "nar3kjan.link"
+  name    = "www"
   type    = "A"
 
   alias {
@@ -73,5 +74,5 @@ resource "aws_route53_record" "www_elb" {
     evaluate_target_health = true
   }
 }
-
+*/
 
