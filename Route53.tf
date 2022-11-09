@@ -59,6 +59,7 @@ resource "aws_acm_certificate_validation" "validation" {
 }
 
 
+
 resource "aws_route53_record" "www_elb" {
   zone_id = "Z0991836LX0MF99OJVYJ"
   name    = "nar3kjan.link"
