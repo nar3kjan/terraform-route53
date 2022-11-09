@@ -64,7 +64,7 @@ resource "aws_acm_certificate_validation" "validation_www" {
 
 resource "aws_route53_record" "www_elb" {
   zone_id = data.aws_route53_zone.my_zone.id
-  name    = "www.nar3kjan.link"
+  name    = "nar3kjan.link"
   type    = "A"
 
   alias {
