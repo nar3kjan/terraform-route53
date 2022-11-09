@@ -61,7 +61,7 @@ resource "aws_acm_certificate_validation" "validation_www" {
   validation_record_fqdns = [for record in aws_route53_record.my_record : record.fqdn]
 }
 
-/*
+
 
 resource "aws_route53_record" "www_elb" {
   zone_id = data.aws_route53_zone.my_zone.id
@@ -74,5 +74,5 @@ resource "aws_route53_record" "www_elb" {
     evaluate_target_health = true
   }
 }
-*/
+
 
